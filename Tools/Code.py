@@ -11,8 +11,11 @@ class Encryptor:
     def File_Encryptor(Key , File):
         # print (File)
         # print (Key)
-        Encrypted = Fernet(str(Key)).encrypt(str(File))
-        print(Fore.RESET + Encrypted)
+        sleep(2)
+        if Key is None:  # Added check for Key
+            print("Key invalid")
+        Encrypted = Fernet(Key).encrypt(File)
+        print(Fore.RESET + Encrypted.decode('utf-8'))
         Save_File_Option = input(Fore.BLUE + "\nDo you want to save the file? [Y] [N]") 
         if Save_File_Option == 'y' or Save_File_Option == 'Y':
             File_Name = input("Please enter your File Name : ")
@@ -26,7 +29,7 @@ class Encryptor:
         sleep(2)
         if Key is None:  # Added check for Key
             print("Key invalid")
-        Decrypted = Fernet(str(Key)).decrypt(str(File))
+        Decrypted = Fernet(Key).decrypt(File)
         print(Fore.RESET + Decrypted.decode('utf-8'))
         Save_File_Option = input(Fore.BLUE + "\nDo you want to save the file? [Y] [N]") 
         if Save_File_Option == 'y' or Save_File_Option == 'Y':
